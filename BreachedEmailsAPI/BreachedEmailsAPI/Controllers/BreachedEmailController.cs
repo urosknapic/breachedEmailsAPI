@@ -25,7 +25,11 @@ namespace BreachedEmailsAPI.Controllers
       - HTTP GET https://my.site/ brechedemails/user@geneplanet.com
       - Expected responses: NotFound or OK
      */
-
+    [HttpGet("{email}")]
+    public ActionResult GetBreachedEmail(string email)
+    {
+      return Ok(_storageService.GetEmail(email));
+    }
     /*
      * DELETE
       HTTP DELETE https://my.site/brechedemails/user@geneplanet.com
