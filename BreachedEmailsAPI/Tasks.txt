@@ -1,0 +1,14 @@
+﻿-	Build the service that acts as a smart cache for breached emails. 
+	-	The end user can 
+			query for breached emails:
+			HTTP GET https://my.site/ brechedemails/user@geneplanet.com
+			Expected responses: NotFound or OK
+		add a breached email
+			HTTP POST https://my.site/brechedemails/  
+			Expected responses: Created or Conflict
+		remove the breached email
+			HTTP DELETE https://my.site/brechedemails/user@geneplanet.com
+			Expected responses: Ok
+-	Write unit tests (code coverage at least at 40%)
+-	Write integration tests
+		Can use Postman
