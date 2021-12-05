@@ -18,7 +18,7 @@ namespace BreachedEmailsAPITests
 
       var result = service.AddEmail(email);
 
-      Assert.AreEqual(result, true);
+      Assert.IsTrue(result);
     }
 
     [Test]
@@ -28,9 +28,11 @@ namespace BreachedEmailsAPITests
       var email = "something@gmail.com";
 
       var addReuslt = service.AddEmail(email);
+      var countEmailsResult = service.GetEmailsCount();
       var result = service.GetEmail(email);
 
-      Assert.AreEqual(addReuslt, true);
+      Assert.IsTrue(addReuslt);
+      Assert.AreEqual(countEmailsResult, 1);
       Assert.AreEqual(result, email);
     }
 
@@ -43,7 +45,7 @@ namespace BreachedEmailsAPITests
       var addReuslt = service.AddEmail(email);
       var resultCount = service.GetEmailsCount();
 
-      Assert.AreEqual(addReuslt, true);
+      Assert.IsTrue(addReuslt);
       Assert.AreEqual(resultCount, 1);
     }
     [Test]
@@ -58,8 +60,8 @@ namespace BreachedEmailsAPITests
 
       var resultCount = service.GetEmailsCount();
 
-      Assert.AreEqual(firstEmailResult, true);
-      Assert.AreEqual(secondEmailResult, true);
+      Assert.IsTrue(firstEmailResult);
+      Assert.IsTrue(secondEmailResult);
       Assert.AreEqual(resultCount, 2);
     }
 
@@ -74,8 +76,8 @@ namespace BreachedEmailsAPITests
 
       var resultCount = service.GetEmailsCount();
 
-      Assert.AreEqual(firstEmailResult, true);
-      Assert.AreEqual(secondEmailResult, false);
+      Assert.IsTrue(firstEmailResult);
+      Assert.IsFalse(secondEmailResult);
       Assert.AreEqual(resultCount, 1);
     }
 
@@ -101,5 +103,19 @@ namespace BreachedEmailsAPITests
       Assert.IsTrue(addResult);
       Assert.IsTrue(deleteResult);
     }
+
+    [Test]
+    public void WhenDeleteEmailAfterInsert_GetEmptyStringForGettingEmail()
+    {
+      var service = new EmailStorageService();
+      var email = "something@gmail.com";
+
+      service.AddEmail(email);
+      service.DeleteEmail(email);
+      var getEmail = service.GetEmail(email);
+
+      Assert.AreEqual(getEmail, string.Empty);
+    }
+
   }
 }

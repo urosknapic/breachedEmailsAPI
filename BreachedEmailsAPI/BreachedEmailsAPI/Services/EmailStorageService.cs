@@ -23,7 +23,12 @@ namespace BreachedEmailsAPI.Services
 
     public string GetEmail(string email)
     {
-      return email;
+      if (_emails.ContainsKey(email))
+      {
+        return email;
+      }
+
+      return string.Empty;
     }
 
     public bool DeleteEmail(string email)
