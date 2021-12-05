@@ -9,7 +9,9 @@ namespace BreachedEmailsAPI.Services
 
     public EmailStorageService()
     {
-      _emails = new Dictionary<string, int>();
+      _emails = new Dictionary<string, int>() {
+        { "uros.knapic@gmail.com", 1 }
+      };
     }
 
     //   T:System.FormatException:

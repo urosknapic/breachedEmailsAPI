@@ -28,7 +28,14 @@ namespace BreachedEmailsAPI.Controllers
     [HttpGet("{email}")]
     public ActionResult GetBreachedEmail(string email)
     {
-      return Ok(_storageService.GetEmail(email));
+      var result = _storageService.GetEmail(email);
+
+      if (string.IsNullOrEmpty(result))
+      {
+        return NotFound();
+      }
+
+      return Ok();
     }
     /*
      * DELETE
