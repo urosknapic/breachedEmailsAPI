@@ -1,6 +1,5 @@
 using Autofac.Extras.Moq;
 using BreachedEmailsAPI.Interfaces;
-using BreachedEmailsAPI.Services;
 using NUnit.Framework;
 
 namespace BreachedEmailsAPITests
@@ -22,7 +21,7 @@ namespace BreachedEmailsAPITests
           .Setup(x => x.AddEmail(email))
           .Returns(true);
 
-        var service = mock.Create<EmailStorageService>();
+        var service = mock.Create<IEmailStorageService>();
 
         var result = service.AddEmail(email);
 
