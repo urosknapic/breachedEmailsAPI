@@ -12,6 +12,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmailStorageService, EmailStorageService>();
 
+builder.Services.AddStackExchangeRedisCache(options => {
+  options.Configuration = builder.Configuration["Redis"];
+  options.InstanceName = "BreackedEmails_";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
