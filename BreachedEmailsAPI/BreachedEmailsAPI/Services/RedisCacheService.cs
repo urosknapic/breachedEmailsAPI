@@ -12,6 +12,12 @@ namespace BreachedEmailsAPI.Services
       _cache = cache;
     }
 
+    public bool ContainsKey(string key)
+    {
+      var value = _cache.GetString(key);
+      return value != null;
+    }
+
     public T Get<T>(string key)
     {
       var value = _cache.GetString(key);
@@ -23,6 +29,18 @@ namespace BreachedEmailsAPI.Services
 
       return default(T);
     }
+
+    public bool RemoveKey(string key)
+    {
+      var value = _cache.GetString(key);
+      if (value != null)
+      {
+        _cache.Remove(key);
+        return true;
+      }
+      return false;
+    }
+
     public T Set<T>(string key, T value)
     {
       var timeOut = new DistributedCacheEntryOptions
