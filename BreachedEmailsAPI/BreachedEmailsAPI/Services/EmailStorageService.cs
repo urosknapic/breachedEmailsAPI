@@ -5,20 +5,17 @@ namespace BreachedEmailsAPI.Services
 {
   public class EmailStorageService : IEmailStorageService
   {
-    private Dictionary<string, int> _emails;
-
-    public EmailStorageService()
-    {
-      _emails = new Dictionary<string, int>() {
-        { "uros.knapic@gmail.com", 1 }
-      };
-    }
+    private Dictionary<string, int> _emails = Storage.Emails;
 
     //   T:System.FormatException:
     //     address is not in a recognized format. -or- address contains non-ASCII 
     public bool AddEmail(string email)
     {
       var emailCheck = new MailAddress(email).Address;
+      if(_emails == null)
+      {
+        _emails = new Dictionary<string, int>();
+      }
 
       if (_emails.ContainsKey(emailCheck.ToString()))
       {

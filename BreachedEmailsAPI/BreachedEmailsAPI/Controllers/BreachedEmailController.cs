@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BreachedEmailsAPI.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("api/breachedEmails")]
   public class BreachedEmailController : ControllerBase
   {
     private IEmailStorageService _storageService;
@@ -14,35 +14,43 @@ namespace BreachedEmailsAPI.Controllers
     }
 
     [HttpPost("{email}")]
-    public ActionResult AddNewBreachedEmail(string email)
+    public IActionResult AddNewBreachedEmail(string email)
     {
-      var result = _storageService.AddEmail(email);
-
-      if (result)
+      try
       {
-        return Created(string.Format("GetBreachedEmail/{0}", email), new { email });
-      }
+        if (_storageService.AddEmail(email))
+        {
+          return CreatedAtRoute("GetBreachedEmail", new { email }, email);
+        }
 
-      return Conflict("Email already exist. Can't add it again");
+        return Conflict("Email already exist. Can't add it again");
+      } 
+      catch (Exception ex)
+      {
+        return BadRequest("Email in wrong format");
+      }
     }
 
-    [HttpGet("{email}", Name = "GetBreachedEmailRoute")]
-    public ActionResult GetBreachedEmail(string email)
+    [HttpGet("{email}", Name = "GetBreachedEmail")]
+    public IActionResult GetBreachedEmail(string email)
     {
-      var result = _storageService.GetEmail(email);
-
-      if (string.IsNullOrEmpty(result))
+      if (string.IsNullOrEmpty(_storageService.GetEmail(email)))
       {
         return NotFound();
       }
 
       return Ok("Email found");
     }
-    /*
-     * DELETE
-      HTTP DELETE https://my.site/brechedemails/user@geneplanet.com
-      - Expected responses: Ok
-      - 404 if email not found
-     */
+
+    [HttpDelete("{email}")]
+    public IActionResult DeleteBreachedEmail(string email)
+    {
+      if (_storageService.DeleteEmail(email))
+      {
+        return Ok();
+      }
+
+      return NotFound("Email not found");
+    }
   }
 }
