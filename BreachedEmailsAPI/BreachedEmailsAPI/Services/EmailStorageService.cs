@@ -23,7 +23,7 @@ namespace BreachedEmailsAPI.Services
       {
         return false;
       }
-      _redisCache.Set(email.ToString(), 1);
+      _redisCache.Set(emailCheck.ToString(), emailCheck.ToString());
       return true;
     }
 
