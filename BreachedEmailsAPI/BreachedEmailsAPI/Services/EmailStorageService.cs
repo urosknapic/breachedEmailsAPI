@@ -13,7 +13,7 @@ namespace BreachedEmailsAPI.Services
 
     public bool AddEmail(string email)
     {
-      throw new NotImplementedException();
+      return true;
     }
 
     public string GetEmail(string email)
