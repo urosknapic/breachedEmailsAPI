@@ -117,5 +117,14 @@ namespace BreachedEmailsAPITests
       Assert.AreEqual(getEmail, string.Empty);
     }
 
+    [Test]
+    public void WhenAddIncorectEmailFormat_ThrowExceptionForIncorectInput()
+    {
+      var service = new EmailStorageService();
+      var email = "thisisincorectemail";
+
+      Assert.Throws<System.FormatException>(() => service.AddEmail(email));
+    }
+
   }
 }
