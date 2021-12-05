@@ -13,17 +13,27 @@ namespace BreachedEmailsAPI.Services
 
     public bool AddEmail(string email)
     {
+      if (_emails.ContainsKey(email))
+      {
+        return false;
+      }
+      _emails.Add(email, 1);
       return true;
     }
 
     public string GetEmail(string email)
     {
-      throw new NotImplementedException();
+      return email;
     }
 
     public bool RemoveEmail(string email)
     {
       throw new NotImplementedException();
+    }
+
+    public int GetCountEmails()
+    {
+      return _emails.Count;
     }
   }
 }
