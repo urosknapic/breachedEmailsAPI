@@ -1,16 +1,27 @@
 ﻿using BreachedEmailsAPI.Interfaces;
+using Microsoft.Extensions.Caching.Distributed;
 using System.Net.Mail;
 
 namespace BreachedEmailsAPI.Services
 {
   public class EmailStorageService : IEmailStorageService
   {
-    private Dictionary<string, int> _emails = Storage.Emails;
+    private IRedisCacheService _redisCache;
+    private Dictionary<string, int> _emails;
+
+    public EmailStorageService(IRedisCacheService redisCache)
+    {
+      _redisCache = redisCache;
+    }
 
     //   T:System.FormatException:
     //     address is not in a recognized format. -or- address contains non-ASCII 
     public bool AddEmail(string email)
     {
+      _redisCache.Set<string>(email, email);
+
+      var key = email;
+
       var emailCheck = new MailAddress(email).Address;
       if(_emails == null)
       {

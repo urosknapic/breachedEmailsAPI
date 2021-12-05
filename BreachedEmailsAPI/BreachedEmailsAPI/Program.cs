@@ -12,9 +12,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IEmailStorageService, EmailStorageService>();
 
+builder.Services.AddSingleton<IRedisCacheService, RedisCacheService>();
+
 builder.Services.AddStackExchangeRedisCache(options => {
-  options.Configuration = builder.Configuration["Redis"];
-  options.InstanceName = "BreackedEmails_";
+  options.Configuration = "localhost:5002";
 });
 
 var app = builder.Build();
