@@ -13,19 +13,20 @@ namespace BreachedEmailsAPI.Controllers
       _storageService = storageService;
     }
 
-    /*
-    * CREATE
-    - HTTP POST https://my.site/brechedemails/  
-    - Expected responses: Created or Conflict
-    */
+    [HttpPost("{email}")]
+    public ActionResult AddNewBreachedEmail(string email)
+    {
+      var result = _storageService.AddEmail(email);
 
-    /*
-     * READ
-     Query for breached emails:
-      - HTTP GET https://my.site/ brechedemails/user@geneplanet.com
-      - Expected responses: NotFound or OK
-     */
-    [HttpGet("{email}")]
+      if (result)
+      {
+        return Created(string.Format("GetBreachedEmail/{0}", email), new { email });
+      }
+
+      return Conflict("Email already exist. Can't add it again");
+    }
+
+    [HttpGet("{email}", Name = "GetBreachedEmailRoute")]
     public ActionResult GetBreachedEmail(string email)
     {
       var result = _storageService.GetEmail(email);
@@ -35,7 +36,7 @@ namespace BreachedEmailsAPI.Controllers
         return NotFound();
       }
 
-      return Ok();
+      return Ok("Email found");
     }
     /*
      * DELETE
