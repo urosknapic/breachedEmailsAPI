@@ -1,4 +1,3 @@
-using BreachedEmailsAPI.Interfaces;
 using BreachedEmailsAPI.Services;
 using NUnit.Framework;
 
@@ -42,7 +41,7 @@ namespace BreachedEmailsAPITests
       var email = "something@gmail.com";
 
       var addReuslt = service.AddEmail(email);
-      var resultCount = service.GetCountEmails();
+      var resultCount = service.GetEmailsCount();
 
       Assert.AreEqual(addReuslt, true);
       Assert.AreEqual(resultCount, 1);
@@ -57,7 +56,7 @@ namespace BreachedEmailsAPITests
       var firstEmailResult = service.AddEmail(emailOne);
       var secondEmailResult = service.AddEmail(emailTwo);
 
-      var resultCount = service.GetCountEmails();
+      var resultCount = service.GetEmailsCount();
 
       Assert.AreEqual(firstEmailResult, true);
       Assert.AreEqual(secondEmailResult, true);
@@ -73,7 +72,7 @@ namespace BreachedEmailsAPITests
       var firstEmailResult = service.AddEmail(email);
       var secondEmailResult = service.AddEmail(email);
 
-      var resultCount = service.GetCountEmails();
+      var resultCount = service.GetEmailsCount();
 
       Assert.AreEqual(firstEmailResult, true);
       Assert.AreEqual(secondEmailResult, false);

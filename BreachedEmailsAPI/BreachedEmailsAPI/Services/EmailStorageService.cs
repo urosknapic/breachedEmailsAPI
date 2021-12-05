@@ -31,7 +31,7 @@ namespace BreachedEmailsAPI.Services
       throw new NotImplementedException();
     }
 
-    public int GetCountEmails()
+    public int GetEmailsCount()
     {
       return _emails.Count;
     }
