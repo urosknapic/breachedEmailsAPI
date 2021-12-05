@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0izaVj76oIlulLwrfL4+tTvLsVPrNNKYyZiy1egoS1IUlEkz+9/P4tKa7fbKDFOIaJrVvQ/2/9lcogezmcIa9w==",
+  "success": true,
+  "projectFilePath": "C:\\uros\\breachedEmails\\BreachedEmailsAPI\\BreachedEmailsAPI\\BreachedEmailsAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\UrosKnapic\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\UrosKnapic\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\UrosKnapic\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\UrosKnapic\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\UrosKnapic\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\UrosKnapic\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
