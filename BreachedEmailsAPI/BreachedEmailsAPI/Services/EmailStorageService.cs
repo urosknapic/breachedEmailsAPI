@@ -28,7 +28,7 @@ namespace BreachedEmailsAPI.Services
 
     public bool DeleteEmail(string email)
     {
-      throw new NotImplementedException();
+      return _emails.Remove(email);
     }
 
     public int GetEmailsCount()

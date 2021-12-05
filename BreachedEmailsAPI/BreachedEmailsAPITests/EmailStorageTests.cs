@@ -78,5 +78,28 @@ namespace BreachedEmailsAPITests
       Assert.AreEqual(secondEmailResult, false);
       Assert.AreEqual(resultCount, 1);
     }
+
+    [Test]
+    public void WhenDeleteEmailFromEmptyStorage_ReturnFalse()
+    {
+      var service = new EmailStorageService();
+      var email = "something@gmail.com";
+
+      var result = service.DeleteEmail(email);
+
+      Assert.IsFalse(result);
+    }
+    [Test]
+    public void WhenDeleteEmailAfterInserting_ReturnTrue()
+    {
+      var service = new EmailStorageService();
+      var email = "something@gmail.com";
+
+      var addResult = service.AddEmail(email);
+      var deleteResult = service.DeleteEmail(email);
+
+      Assert.IsTrue(addResult);
+      Assert.IsTrue(deleteResult);
+    }
   }
 }
