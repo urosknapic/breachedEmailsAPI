@@ -4,6 +4,6 @@
   {
     string GetEmail(string email);
     bool AddEmail(string email);
-    bool RemoveEmail(string email);
+    bool DeleteEmail(string email);
   }
 }

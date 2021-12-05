@@ -26,7 +26,7 @@ namespace BreachedEmailsAPI.Services
       return email;
     }
 
-    public bool RemoveEmail(string email)
+    public bool DeleteEmail(string email)
     {
       throw new NotImplementedException();
     }
