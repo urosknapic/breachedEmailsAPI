@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "bbca04a9-4e0a-4684-bf55-0cb4653ab84c",
+		"name": "BreachedAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "When delete email first fails and delete after post OK",
+			"item": [
+				{
+					"name": "Delete breached email before inserting FAILs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Add breached email once",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete breached email SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add First Success Repeat Second Fails",
+			"item": [
+				{
+					"name": "Add breached email once OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Add breached email twice FAILS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete breached email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status code', () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404])\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Check status code', () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404])\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Add breached email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "{{e_appUrl}}/api/breachedEmails/{{e_testingEmail}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "loc_testingEmail",
+			"value": "uros.knapicc@gmail.com"
+		}
+	]
+}
